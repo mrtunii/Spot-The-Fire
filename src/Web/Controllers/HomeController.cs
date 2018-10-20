@@ -5,14 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
-
+using Google.Cloud.Firestore;
 namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public  IActionResult Index()
         {
+//            FirestoreDb db = FirestoreDb.Create("nasa-app-challenge");
+//            CollectionReference postsRef = db.Collection("posts");
+//            QuerySnapshot snapshot = await postsRef.GetSnapshotAsync();
             return View();
+
         }
 
         public IActionResult About()
