@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/elephant.min.css">
   <link rel="stylesheet" href="/css/application.min.css">
   <link rel="stylesheet" href="/css/demo.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css" />
   <style>
     .card_shadow{
       -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15);
@@ -25,7 +26,7 @@
   <div class="navbar navbar-default">
     <div class="navbar-header">
       <a class="navbar-brand navbar-brand-center" href="index.html">
-        <img class="navbar-brand-logo" src="img/logo-inverse.svg" alt="Elephant">
+        <h3 class="navbar-brand-logo" styl="color:white">APP</h3>
       </a>
       <button class="navbar-toggler visible-xs-block collapsed" type="button" data-toggle="collapse" data-target="#sidenav">
         <span class="sr-only">Toggle navigation</span>
@@ -67,7 +68,7 @@
   </div>
 </div>
 <div class="layout-main">
-  <div class="layout-sidebar">
+  <div class="layout-sidebar" style="position: fixed !important;">
     <div class="layout-sidebar-backdrop"></div>
     <div class="layout-sidebar-body">
       <div class="custom-scrollbar">
@@ -97,15 +98,8 @@
     </div>
   </div>
   @RenderBody()
-
-  <div class="layout-footer">
-    <div class="layout-footer-body">
-      <small class="version">Version 1.4.0</small>
-      <small class="copyright">2017 &copy; Elephant <a href="http://madebytilde.com/">Made by Tilde</a></small>
-    </div>
-  </div>
 </div>
-    
+
 <script src="/js/vendor.min.js"></script>
 <script src="/js/elephant.min.js"></script>
 <script src="/js/application.min.js"></script>

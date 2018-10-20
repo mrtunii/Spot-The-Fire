@@ -2,75 +2,47 @@
     ViewData["Title"] = "Home Page";
 }
 
-<style>
-    .float{
-        position:fixed;
-        width:60px;
-        height:60px;
-        bottom:40px;
-        right:40px;
-        background-color:#c62828;
-        color:#FFF;
-        border-radius:50px;
-        text-align:center;
-        box-shadow: 2px 2px 3px #999;
-    }
-    
-    .float:hover {
-        color:#FFF;
-    }
-
-    .my-float{
-        margin-top: 15px;
-        font-size: 25px;
-    }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
 
 <div id="app">
     <div class="layout-content">
         <div class="layout-content-body">
-         
             <div class="row ">
                 <div class="col-sm-12">
                     <div class="row ">
                         <div class=" col-md-12 text-center m-b">
-                            <h3 class="m-b-0">Today</h3>
-                            <small>Latest from 2018-20-10</small>
+                            <h3 class="m-b-0">Feed</h3>
                             <span class="col-md-12 m-t m-b">
                                 <i class="icon icon-circle"></i>
                             </span>
-                    
                         </div>
-                        <div class="col-md-6 col-md-offset-3" v-for="post in posts">
+                        <div class="col-md-6 col-md-offset-3" v-for="(post,index) in posts" style="margin-top: 10px;">
                             <div class="card card_shadow">
-                                <div class="card-header">
-                                    <div class="col-md-12" style="padding-left:0px !important; padding-right:0px !important;">
-                       
-                                        <div class="col-md-6 col-sm-12" style="padding-left:0px !important; padding-right:0px !important;">
-                          
-                                            <i class="icon icon-map-marker"></i>
-                                            {{ post.location }}
-                          
-                                        </div>
-                                        <div class="col-md-6 col-sm-12" style="padding-left:0px !important; padding-right:0px !important;">
-                                            <span class="pull-right">
-                                                <i class="icon icon-clock-o"></i>
-                                                {{ post.created_at }} ({{ post.time_ago }})
-                                            </span>
-                                        </div>
+                                <div class="post_images">
+                                    <div class="card-image">
+                                        
+                                            <img class="card-img-bottom img-responsive" v-bind:src="post.static_map_url" style="width: 100%">
+                                        
                                     </div>
-                      
-                        
-                        
-                                </div>
-                                <div class="card-image">
-                                    <img class="card-img-bottom img-responsive" v-bind:src="post.image" alt="Golden Gate Bridge, San Francisco">
+                                    <div class="card-image">
+                                        
+                                            <img class="card-img-bottom img-responsive" v-bind:src="post.image" style="width: 100%">
+                                        
+                                    </div>
+
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title ">
+                                        <small style="color: black">
+                                            <i class="icon icon-clock-o"></i>
+                                            {{ post.created_at }}
+                                        </small>
+                                        <br>
+                                        <br>
                                         <a class="link-muted" href="#">{{ post.description }}</a>
                                     </h4>
-                      
+
                                 </div>
                             </div>
                             <!-- <div class="card">
@@ -80,126 +52,100 @@
                     
                             </div> -->
                         </div>
-              
+
                     </div>
                 </div>
-          
+
             </div>
-         
+
         </div>
     </div>
-    
-    
-    <a href="#" data-toggle="modal" data-target="#addFireAlertModal"  class="float">
-    <i class="icon icon-fire my-float"></i>
-    </a>
-   
-    
-    <div id="addFireAlertModal" tabindex="-1" role="dialog" class="modal fade">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-danger">
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">×</span>
-              <span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title">By using the grid system, fields can have the desired size</h4>
-          </div>
-          <div class="modal-body">
-            <form class="form form-horizontal">
-                <div class="form-group">
-                    <label for="file">Choose Picture</label>
-                    <input type="file" class="form-control" id="image"/>
-                </div>
-                <div class="form-group">
-                    <label for="file">Type City And Country</label>
-                    <input type="text" id="image"/>
-                </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+
+
 </div>
+
 
 @section Scripts
 {
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
-<!-- Firebase App is always required and must be first -->
-<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
 
-<!-- Add additional services that you want to use -->
-@* <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script> *@
+    <!-- Add additional services that you want to use -->
+    @* <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script> *@
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
-@* <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-messaging.js"></script> *@
-@* <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-functions.js"></script> *@
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+    @* <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-messaging.js"></script> *@
+    @* <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-functions.js"></script> *@
 
-<!-- Comment out (or don't include) services that you don't want to use -->
-<!-- <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-storage.js"></script> -->
+    <!-- Comment out (or don't include) services that you don't want to use -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-storage.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
 
-<script>
-    
-    var Vue = new Vue({
-        el: '#app',
-        data: {
-          db: null ,
-          config: {
-              apiKey: "AIzaSyDhAx6mvMk9AVekWyQtPtiSyr6qkJadoNs",
-              authDomain: "nasa-app-challenge.firebaseapp.com",
-              databaseURL: "https://nasa-app-challenge.firebaseio.com",
-              projectId: "nasa-app-challenge",
-              storageBucket: "nasa-app-challenge.appspot.com",
-              messagingSenderId: "549310585067"
-          },
-          posts: []
-        },
-        methods: {
-            toDateTime: function(secs) {
-                var t = new Date(1970, 0, 1); // Epoch
-                t.setSeconds(secs);
-                return t;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+
+    <script>
+
+        var Vue = new Vue({
+            el: '#app',
+            data: {
+                db: null,
+                config: {
+                    apiKey: "AIzaSyDhAx6mvMk9AVekWyQtPtiSyr6qkJadoNs",
+                    authDomain: "nasa-app-challenge.firebaseapp.com",
+                    databaseURL: "https://nasa-app-challenge.firebaseio.com",
+                    projectId: "nasa-app-challenge",
+                    storageBucket: "nasa-app-challenge.appspot.com",
+                    messagingSenderId: "549310585067"
+                },
+                posts: []
             },
-            addToFeed: function(postData) {
-                console.log(postData);
-                var createdDate = this.toDateTime(postData.created_at.seconds);
-                this.posts.unshift({
-                    description: postData.description,
-                    created_at: createdDate.toLocaleDateString(),
-                    time_ago: timeago().format(createdDate),
-                    image:postData.image,
-                    location: postData.location
-                });
-            }
-        },
-        mounted: function() {
-            
+            methods: {
+                addToFeed: function(postData) {
 
-            firebase.initializeApp(this.config);
-
-            this.db = firebase.firestore();
-            
-            // Disable deprecated features
-            this.db.settings({
-                timestampsInSnapshots: true
-            });
-            var self = this;
-           
-            
-            this.db.collection("posts")
-                .onSnapshot(function(querySnapshot) {
-                    querySnapshot.docChanges().forEach(function(change) {
-                        if (change.type === "added") {
-                            self.addToFeed(change.doc.data());
-                        } 
+                    this.posts.unshift({
+                        description: postData.description,
+                        created_at: postData.created_at,
+                        image: postData.image,
+                        static_map_url: 'https://maps.googleapis.com/maps/api/staticmap?center=' +
+                            postData.lat +
+                            ',' +
+                            postData.lng +
+                            '&zoom=13&size=1920x400&markers=' +
+                            postData.lat +
+                            ',' +
+                            postData.lng +
+                            '&key=AIzaSyCvTITAJSKdDr-rKJk5grdu4WpFcdzNy90'
                     });
-                    
+                }
+            },
+            mounted: function() {
+
+                firebase.initializeApp(this.config);
+
+                this.db = firebase.firestore();
+
+                // Disable deprecated features
+                this.db.settings({
+                    timestampsInSnapshots: true
                 });
 
+                var self = this;
 
-        }
-    });
-   
-</script>
+                this.db.collection("posts")
+                    .onSnapshot(function(querySnapshot) {
+                        querySnapshot.docChanges().forEach(function(change) {
+                            if (change.type === "added") {
+                                self.addToFeed(change.doc.data());
+                            }
+                        });
+                    });
+
+                $(".post_images").slick();
+            }
+        });
+
+    </script>
 
 }
