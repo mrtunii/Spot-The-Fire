@@ -21,14 +21,14 @@
                             <div class="card card_shadow">
                                 <div class="post_images">
                                     <div class="card-image">
-                                        
+                                        <a v-bind:href="post.static_map_url" v-bind:data-lightbox="index">
                                             <img class="card-img-bottom img-responsive" v-bind:src="post.static_map_url" style="width: 100%">
-                                        
+                                        </a>
                                     </div>
                                     <div class="card-image">
-                                        
+                                        <a v-bind:href="post.image" v-bind:data-lightbox="index">
                                             <img class="card-img-bottom img-responsive" v-bind:src="post.image" style="width: 100%">
-                                        
+                                        </a>
                                     </div>
 
                                 </div>
@@ -67,7 +67,7 @@
 
 @section Scripts
 {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
 
